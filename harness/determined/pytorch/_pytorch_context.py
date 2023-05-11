@@ -72,6 +72,10 @@ class PyTorchTrialContext(pytorch._PyTorchReducerContext):
             if hparams and hparams.get("global_batch_size", None)
             else (None, None)
         )
+
+        print('batch_sizes')
+        print(self._per_slot_batch_size, self._global_batch_size)
+
         self._hparams = hparams
         self._num_gpus = num_gpus
         self._debug_enabled = debug_enabled
@@ -459,6 +463,7 @@ class PyTorchTrialContext(pytorch._PyTorchReducerContext):
         return [(name, p) for name, p in self._main_model.named_parameters() if p in opt_params]
 
     def _init_device(self) -> torch.device:
+        print(self.distributed.size)
         if self.distributed.size > 1:
             if self._num_gpus > 0:
                 # We launch a horovod process per GPU. Each process
