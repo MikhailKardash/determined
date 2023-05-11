@@ -1062,7 +1062,7 @@ class TestPyTorchTrial:
     @pytest.mark.dothis
     def test_pytorch_mnist(self, tmp_path: pathlib.Path):
         checkpoint_dir = str(tmp_path.joinpath("checkpoint"))
-        os.environ['USE_HOROVOD'] = True
+        os.environ['USE_HOROVOD'] = "1"
 
         config = utils.load_config(utils.tutorials_path("mnist_pytorch/const.yaml"))
         hparams = config["hyperparameters"]
