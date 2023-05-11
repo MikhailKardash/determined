@@ -207,6 +207,9 @@ class _PyTorchTrialController:
         self.use_horovod = distributed_backend.use_horovod()
         self.use_torch = distributed_backend.use_torch()
         self.is_chief = self.context.distributed.rank == 0
+        print("usehorovod:" + str(self.use_horovod))
+        print("usetorch:" + str(self.use_torch))
+        print("ischief:"+str(self.is_chief))
 
         # Training loop variables
         self.max_length = max_length
