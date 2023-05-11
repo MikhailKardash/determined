@@ -1218,7 +1218,8 @@ def create_trial_and_trial_controller(
         trial_seed = random.randint(0, 1 << 31)
 
     checkpoint_dir = checkpoint_dir or "/tmp"
-    with det.core._dummy_init(checkpoint_storage=checkpoint_dir) as core_context:
+    distributed = det.core.DistributedContext.from_torch_distributed()
+    with det.core._dummy_init(distributed=distributed,checkpoint_storage=checkpoint_dir) as core_context:
         core_context.train._trial_id = "1"
         distributed_backend = det._DistributedBackend()
         if expose_gpus:
