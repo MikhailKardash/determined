@@ -1083,7 +1083,7 @@ class TestPyTorchTrial:
             hparams=hparams,
             tmp_path=tmp_path,
             exp_config=exp_config,
-            steps=(1, 1),
+            steps=(2, 2),
         )
 
 
