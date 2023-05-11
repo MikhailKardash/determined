@@ -1221,6 +1221,7 @@ def create_trial_and_trial_controller(
         distributed_backend = det._DistributedBackend()
         if expose_gpus:
             gpu_uuids = gpu.get_gpu_uuids()
+            print("GPU_UUIDS: " + str(gpu_uuids))
         else:
             gpu_uuids = []
 
@@ -1229,7 +1230,7 @@ def create_trial_and_trial_controller(
             core_context=core_context,
             trial_seed=trial_seed,
             hparams=hparams,
-            slots_per_trial=1,
+            slots_per_trial=2,
             num_gpus=len(gpu_uuids),
             exp_conf=exp_config,
             aggregation_frequency=aggregation_frequency,
