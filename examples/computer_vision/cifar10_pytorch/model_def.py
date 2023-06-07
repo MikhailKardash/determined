@@ -13,6 +13,7 @@ from torch import nn
 from torchvision import transforms
 
 from determined.pytorch import DataLoader, PyTorchTrial, PyTorchTrialContext
+import determined as det
 
 # Constants about the data set.
 IMAGE_SIZE = 32
@@ -78,6 +79,11 @@ class CIFARTrial(PyTorchTrial):
             )
         )
 
+        distcont = det.core.DistributedContext.from_torch_distributed()
+
+        print(distcont.broadcast('a message'))
+
+
     def train_batch(
         self, batch: TorchData, epoch_idx: int, batch_idx: int
     ) -> Dict[str, torch.Tensor]:
@@ -105,6 +111,9 @@ class CIFARTrial(PyTorchTrial):
         return {"validation_accuracy": accuracy, "validation_error": 1.0 - accuracy}
 
     def _download_dataset(self, train: bool) -> Any:
+        #import ssl
+        #ssl._create_default_https_context = ssl._create_unverified_context
+
         transform = transforms.Compose(
             [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
         )
@@ -123,3 +132,8 @@ class CIFARTrial(PyTorchTrial):
     def build_validation_data_loader(self) -> Any:
         valset = self._download_dataset(train=False)
         return DataLoader(valset, batch_size=self.context.get_per_slot_batch_size())
+
+if __name__ == "__main__":
+    distcont = det.core.DistributedContext.from_torch_distributed()
+
+    print(distcont.broadcast('a message'))

@@ -5,15 +5,16 @@ hyperparameters:
   layer1_dropout: 0.25
   layer2_dropout: 0.25
   layer3_dropout: 0.5
-  global_batch_size: 512 # Per-GPU batch size of 32
+  global_batch_size: 64 # Per-GPU batch size of 32
 resources:
-  slots_per_trial: 16
-records_per_epoch: 50000
+  slots_per_trial: 2
+records_per_epoch: 500
 searcher:
   name: single
   metric: validation_error
   max_length:
-    epochs: 32
-entrypoint: model_def:CIFARTrial
+    epochs: 1
+entrypoint: python -m determined.launch.torch_distributed model_def.py
 min_validation_period:
   epochs: 1
+max_restarts: 0
