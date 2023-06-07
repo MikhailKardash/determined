@@ -79,10 +79,6 @@ class CIFARTrial(PyTorchTrial):
             )
         )
 
-        distcont = det.core.DistributedContext.from_torch_distributed()
-
-        print(distcont.broadcast('a message'))
-
 
     def train_batch(
         self, batch: TorchData, epoch_idx: int, batch_idx: int
