@@ -132,8 +132,3 @@ class CIFARTrial(PyTorchTrial):
     def build_validation_data_loader(self) -> Any:
         valset = self._download_dataset(train=False)
         return DataLoader(valset, batch_size=self.context.get_per_slot_batch_size())
-
-if __name__ == "__main__":
-    distcont = det.core.DistributedContext.from_torch_distributed()
-
-    print(distcont.broadcast('a message'))
