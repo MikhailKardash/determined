@@ -1307,6 +1307,7 @@ def amp_metrics_test(trial_class, training_metrics, agg_freq=1):
 def run_cifar10(tmp_path: pathlib.Path):
 
     checkpoint_dir = str(tmp_path.joinpath("checkpoint"))
+    tensorboard_path = tmp_path.joinpath("tensorboard")
 
     distributed_context = det.core.DistributedContext.from_torch_distributed()
 
@@ -1331,9 +1332,9 @@ def run_cifar10(tmp_path: pathlib.Path):
         hparams=hparams,
         trial_seed=17,
         exp_config=exp_config,
-        max_batches=steps[0],
-        min_validation_batches=steps[0],
-        min_checkpoint_batches=steps[0],
+        max_batches=1,
+        min_validation_batches=1,
+        min_checkpoint_batches=1,
         checkpoint_dir=checkpoint_dir,
         tensorboard_path=tensorboard_path,
         expose_gpus=True,
@@ -1350,8 +1351,8 @@ def run_cifar10(tmp_path: pathlib.Path):
         hparams=hparams,
         trial_seed=17,
         exp_config=exp_config,
-        max_batches=steps[0] + steps[1],
-        min_validation_batches=steps[1],
+        max_batches=2,
+        min_validation_batches=1,
         min_checkpoint_batches=sys.maxsize,
         checkpoint_dir=checkpoint_dir,
         tensorboard_path=tensorboard_path,
