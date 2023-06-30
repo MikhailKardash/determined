@@ -248,7 +248,7 @@ class DataLoader:
             batch_sampler, repeat=repeat, skip=skip, num_replicas=num_replicas, rank=rank
         )
 
-        # Try to no break any torch version as old as v1.0.
+        # Try not to break any torch version as old as v1.0.
         extra_kwargs = {}
         if version.parse(torch.__version__) >= version.parse("1.2.0"):
             extra_kwargs["multiprocessing_context"] = self.multiprocessing_context
@@ -256,7 +256,7 @@ class DataLoader:
             extra_kwargs["generator"] = self.generator
         if version.parse(torch.__version__) >= version.parse("1.7.0"):
             if version.parse(torch.__version__) < version.parse("1.13.0"):
-                # prefetch_factor became optional in 1.13, hardcode for backwards compatability.
+                # prefetch_factor became optional in 1.13.
                 if self.prefetch_factor is None and self.num_workers == 0:
                     self.prefetch_factor = 2
 
