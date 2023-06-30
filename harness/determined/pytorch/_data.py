@@ -255,8 +255,8 @@ class DataLoader:
         if version.parse(torch.__version__) >= version.parse("1.6.0"):
             extra_kwargs["generator"] = self.generator
         if version.parse(torch.__version__) >= version.parse("1.7.0"):
-            if version.parse(torch.__version__) < version.parse("1.13.0"):
-                # prefetch_factor became optional in 1.13.
+            if version.parse(torch.__version__) < version.parse("2.0.0"):
+                # prefetch_factor became optional in 2.0.
                 if self.prefetch_factor is None and self.num_workers == 0:
                     self.prefetch_factor = 2
 
