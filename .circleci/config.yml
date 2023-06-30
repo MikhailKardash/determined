@@ -1830,7 +1830,7 @@ jobs:
 
   test-unit-harness-gpu:
     docker:
-      - image: determinedai/environments:cuda-11.3-pytorch-1.12-tf-2.11-gpu-0.21.2
+      - image: determinedai/environments-dev:cuda-11.3-pytorch-2-tf-2.11-gpu-0.22.1
     resource_class: determined-ai/container-runner-gpu
     steps:
       - run: mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
@@ -1853,7 +1853,7 @@ jobs:
 
   test-unit-harness-gpu-parallel:
     docker:
-      - image: determinedai/environments:cuda-11.3-pytorch-1.12-tf-2.11-gpu-0.21.2
+      - image: determinedai/environments-dev:cuda-11.3-pytorch-2-tf-2.11-gpu-0.22.1
     resource_class: determined-ai/container-runner-multi-gpu
     steps:
       - run: mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
@@ -1876,7 +1876,7 @@ jobs:
 
   test-unit-harness-gpu-lightning:
     docker:
-      - image: determinedai/environments:cuda-11.3-pytorch-1.12-tf-2.11-gpu-0.21.2
+      - image: determinedai/environments-dev:cuda-11.3-pytorch-2-tf-2.11-gpu-0.22.1
     resource_class: determined-ai/container-runner-gpu
     steps:
       - run: mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
