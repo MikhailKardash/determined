@@ -124,7 +124,7 @@ class DataLoader:
         multiprocessing_context: Any = None,
         generator: Any = None,
         *,
-        prefetch_factor: int = 2,
+        prefetch_factor: Optional[int] = None,
         persistent_workers: bool = False,
     ):
         # Don't allow IterableDatasets in our DataLoader.
@@ -159,11 +159,16 @@ class DataLoader:
         if timeout < 0:
             raise ValueError("timeout option should be non-negative")
 
-        if num_workers == 0 and prefetch_factor != 2:
+        if num_workers == 0 and prefetch_factor is not None:
             raise ValueError(
                 "prefetch_factor option could only be specified in multiprocessing. "
                 "let num_workers > 0 to enable multiprocessing."
             )
+        elif num_workers > 0 and prefetch_factor is None:
+            prefetch_factor = 2
+        elif prefetch_factor is not None and prefetch_factor < 0:
+            raise ValueError('prefetch_factor option should be non-negative')
+
         assert prefetch_factor > 0
 
         if persistent_workers and num_workers == 0:
