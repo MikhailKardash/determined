@@ -167,7 +167,7 @@ class DataLoader:
         elif num_workers > 0 and prefetch_factor is None:
             prefetch_factor = 2
         elif prefetch_factor is not None and prefetch_factor < 0:
-            raise ValueError('prefetch_factor option should be non-negative')
+            raise ValueError("prefetch_factor option should be non-negative")
 
         if persistent_workers and num_workers == 0:
             raise ValueError("persistent_workers option needs num_workers > 0")
