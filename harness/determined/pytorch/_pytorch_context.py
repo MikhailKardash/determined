@@ -13,7 +13,7 @@ from determined.horovod import hvd
 # Apex is included only for GPU trials.
 try:
     import apex
-except ImportError as e:  # pragma: no cover
+except ImportError:  # pragma: no cover
     if torch.cuda.is_available():
         logging.warning("Failed to import apex.")
     pass
@@ -23,7 +23,7 @@ try:
     import torch.cuda.amp as amp
 
     HAVE_AMP = True
-except ImportError as e:  # pragma: no cover
+except ImportError:  # pragma: no cover
     HAVE_AMP = False
     if torch.cuda.is_available():
         logging.warning("PyTorch AMP is unavailable.")
