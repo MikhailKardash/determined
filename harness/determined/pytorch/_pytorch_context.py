@@ -14,7 +14,6 @@ from determined.horovod import hvd
 try:
     import apex
 except ImportError as e:  # pragma: no cover
-    raise e
     if torch.cuda.is_available():
         logging.warning("Failed to import apex.")
     pass
@@ -25,7 +24,6 @@ try:
 
     HAVE_AMP = True
 except ImportError as e:  # pragma: no cover
-    raise e
     HAVE_AMP = False
     if torch.cuda.is_available():
         logging.warning("PyTorch AMP is unavailable.")
