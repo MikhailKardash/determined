@@ -23,15 +23,15 @@ container runtime in use.
 Each version of Determined utilizes specifically-tagged Docker containers. The image tags referenced
 by default in this version of Determined are described below.
 
-+-------------+--------------------------------------------------------------------------+
-| Environment | File Name                                                                |
-+=============+==========================================================================+
-| CPUs        | ``determinedai/environments:py-3.8-pytorch-1.12-tf-2.11-cpu-6eceaca``    |
-+-------------+--------------------------------------------------------------------------+
-| NVIDIA GPUs | ``determinedai/environments:cuda-11.3-pytorch-1.12-tf-2.11-gpu-6eceaca`` |
-+-------------+--------------------------------------------------------------------------+
-| AMD GPUs    | ``determinedai/environments:rocm-5.0-pytorch-1.10-tf-2.7-rocm-6eceaca``  |
-+-------------+--------------------------------------------------------------------------+
++-------------+------------------------------------------------------------------------------+
+| Environment | File Name                                                                    |
++=============+==============================================================================+
+| CPUs        | ``determinedai/environments-dev:py-3.8-pytorch-1.12-tf-2.11-cpu-3700b99``    |
++-------------+------------------------------------------------------------------------------+
+| NVIDIA GPUs | ``determinedai/environments-dev:cuda-11.3-pytorch-1.12-tf-2.11-gpu-3700b99`` |
++-------------+------------------------------------------------------------------------------+
+| AMD GPUs    | ``determinedai/environments-dev:rocm-5.0-pytorch-1.10-tf-2.7-rocm-3700b99``  |
++-------------+------------------------------------------------------------------------------+
 
 See :doc:`/model-dev-guide/prepare-container/set-environment-images` for the images Docker Hub
 location, and add each tagged image needed by your experiments to the image cache.
